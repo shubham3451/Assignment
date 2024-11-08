@@ -1,0 +1,58 @@
+<!-- order_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Page</title>
+    <style>
+        /* Basic styles here */
+    </style>
+</head>
+<body>
+    <h1>Your Orders</h1>
+    <h2>Orders placed by: {{ user.username }}</h2>
+
+    <!-- User switching form -->
+    <div class="switch-user">
+        <form action="{% url 'switch_user' 'user1' %}" method="get">
+            <button type="submit">Switch to User 1</button>
+        </form>
+        <form action="{% url 'switch_user' 'user2' %}" method="get">
+            <button type="submit">Switch to User 2</button>
+        </form>
+        {% comment %} <form action="{% url 'switch_user' 'user3' %}" method="get">
+            <button type="submit">Switch to User 3</button>
+        </form> {% endcomment %}
+    </div>
+
+    <!-- Order Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Special Instructions</th>
+                <th>Order Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.product.name }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>{{ order.special_instructions }}</td>
+                    <td>{{ order.order_date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
+
+
+
+

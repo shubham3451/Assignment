@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Order</title>
+</head>
+<body>
+    <h1>Create an Order</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="id_quantity">Quantity:</label>
+            {{ form.quantity }}
+            {% if form.quantity.errors %}
+                <ul>
+                    {% for error in form.quantity.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="id_order_date">Order Date:</label>
+            {{ form.order_date }}
+            {% if form.order_date.errors %}
+                <ul>
+                    {% for error in form.order_date.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="id_special_instructions">Special Instructions:</label>
+            {{ form.special_instructions }}
+        </div>
+
+        <button type="submit">Submit Order</button>
+    </form>
+</body>
+</html>

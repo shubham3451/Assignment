@@ -1,0 +1,71 @@
+<!-- product_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <style>
+        /* Add basic styles here for your page */
+    </style>
+</head>
+<body>
+    <h1>Product List</h1>
+    <h2>Welcome, {{ user.username }}!</h2>
+
+    <!-- User switching form -->
+    <div class="switch-user">
+        <form action="{% url 'switch_user' 'user1' %}" method="get">
+            <button type="submit">Switch to User 1</button>
+        </form>
+        <form action="{% url 'switch_user' 'user2' %}" method="get">
+            <button type="submit">Switch to User 2</button>
+        </form>
+        {% comment %} <form action="{% url 'switch_user' 'user3' %}" method="get">
+            <button type="submit">Switch to User 3</button>
+        </form> {% endcomment %}
+    </div>
+
+    <!-- Product Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Special Instructions</th>
+                <th>Order Date</th>
+                <th>Order</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>${{ product.price }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>
+                       <!-- product_page.html -->
+                    <form action="{% url 'submit_order' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="product" value="{{ product.id }}">
+                        <input type="number" name="quantity" required placeholder="Quantity">
+                        <input type="date" name="order_date" required>  <!-- Date format should be yyyy-mm-dd -->
+                        <input type="text" name="special_instructions" placeholder="Special Instructions">
+                        <button type="submit">Place Order</button>
+                    </form>
+
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+<!-- error_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+        }
+        .error-message {
+            color: red;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .back-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Error</h1>
+    <p class="error-message">An error occurred. Please try again later or contact support.</p>
+    <p class="error-message">{{ error_message }}</p>
+
+    <!-- Button to go back to the product page -->
+    <a href="{% url 'product_page' %}" class="back-button">Go Back to Product Page</a>
+</body>
+</html>
